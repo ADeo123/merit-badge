@@ -25,7 +25,7 @@ class MeritBadge extends LitElement {
 
   constructor() {
     super();
-    this.header = "";
+    this.header ="Testing Header";
     this.date = "4/17/2023";
     this.logo = "communication:business";
     this.title = "Communication in Business";
@@ -35,7 +35,7 @@ class MeritBadge extends LitElement {
     return html`
       <div class="badge">
         <h2 title="date">${this.date}</h2>
-        <simple-icon icon="${this.logo}"> </simple-icon>
+        <simple-icon class="icon">${this.logo}</simple-icon>
         <h2 class="title">${this.title}</h1>
       </div>
     `;
