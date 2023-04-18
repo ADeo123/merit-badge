@@ -13,6 +13,13 @@ class MeritBadge extends LitElement {
   };
 
   static styles = css`
+    
+    :host{
+      background: white; 
+      
+    }
+    
+    
     .badge {
       height: 300px;
       border-radius: 50%; 
