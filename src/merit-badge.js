@@ -1,5 +1,6 @@
 import { LitElement, html, css } from "lit";
 import "@lrnwebcomponents/absolute-position-behavior/absolute-position-behavior.js";
+import "@lrnwebcomponents/simple-icon";
 
 class MeritBadge extends LitElement {
   static properties = {
@@ -16,9 +17,7 @@ class MeritBadge extends LitElement {
     
     :host{
       background: white; 
-      
     }
-    
     
     .badge {
       height: 300px;
@@ -28,6 +27,34 @@ class MeritBadge extends LitElement {
       text-align: center;
       line-height: 200px 
     }
+
+    .date{
+      justify-content: center;
+      color: black;  
+    }
+
+    .icon{
+      justify-content: center; 
+      background-color: blue; 
+    }
+
+    .title{
+      justify-content: center; 
+      color: black; 
+    }
+
+    .detailsIcon{
+
+    }
+
+    .skillsIcon{
+
+    }
+
+    .verificationLinkIcon{ 
+
+    }
+
   `;
 
   constructor() {
@@ -44,6 +71,9 @@ class MeritBadge extends LitElement {
         <h2 title="date">${this.date}</h2>
         <simple-icon class="icon">${this.logo}</simple-icon>
         <h2 class="title">${this.title}</h1>
+        <simple-icon class="detailsIcon"> </simple-icon>
+        <simple-icon class="skillsIcon"> </simple-icon> 
+        <simple-icon class="verificationLinkIcon"> </simple-icon>
       </div>
     `;
   }
