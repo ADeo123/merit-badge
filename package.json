@@ -18,7 +18,9 @@
   "dependencies": {
     "@lrnwebcomponents/absolute-position-behavior": "^4.2.0",
     "@lrnwebcomponents/simple-icon": "^4.2.0",
-    "lit": "^2.0.2"
+    "i": "^0.3.7",
+    "lit": "^2.0.2",
+    "npm": "^9.6.5"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.4",

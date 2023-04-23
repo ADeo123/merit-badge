@@ -15,20 +15,23 @@ class MeritBadge extends LitElement {
   };
 
   static styles = css`
-    
     :host{
       background-color: blue; 
     }
     
     .badge {
-      border: 2px solid black;
+      border: 2px dashed black;
       border-radius: 50%; 
       background-color: navajowhite;
       color: black; 
       text-align: center;
       line-height: 200px 
+      padding: 50px; 
+      margin: 20px;
+      height: 700px;
+      color: black;
     }
-    3
+    
     .date{
       justify-content: center;
       color: black;  
@@ -37,49 +40,54 @@ class MeritBadge extends LitElement {
 
     .icon{
       justify-content: center; 
-      background-color: ;
       color: black
     }
 
     .title{
-      justify-content: center; 
-      color: black; 
+      justify-content: center;
+
     }
 
     .detailsIcon{
       justify-content: right; 
+      size: 500px;
     }
 
     .skillsIcon{
       justify-content: center; 
+      size: 500px
     }
 
     .verificationLinkIcon{ 
       justify-content: left; 
+      size: 500px;
     }
-
   `;
 
   constructor() {
     super();
     this.header ="Testing Header";
-    this.date = "4/17/2023";
+    this.date = "April 20th, 2023";
     this.logo = "communication:business";
     this.title = "Art of the Middle Ages";
     this.iconOne= "verified-user";
     this.iconTwo= "add";
     this.iconThree="image:details";
+    
   }
+
+
+
 
   render() {
     return html`
       <div class="badge">
-        <h2 title="date">${this.date}</h2>
+        <h2 id="date" title="date">${this.date}</h2>
         <simple-icon class="icon">${this.logo}</simple-icon>
         <h2 class="title">${this.title}</h1>
-        <simple-icon class="detailsIcon">${this.iconThree} </simple-icon>
-        <simple-icon class="skillsIcon">${this.iconTwo} </simple-icon> 
-        <simple-icon class="verificationLinkIcon">${this.iconOne} </simple-icon>
+        <simple-icon class="detailsIcon" icon="${this.iconThree}"> </simple-icon>
+        <simple-icon class="skillsIcon" icon="${this.iconTwo}"> </simple-icon> 
+        <simple-icon class="verificationLinkIcon" icon="${this.iconOne}"> </simple-icon>
       </div>
     `;
   }
