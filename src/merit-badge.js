@@ -15,12 +15,10 @@ class MeritBadge extends LitElement {
   };
 
   static styles = css`
-    :host{
-      background-color: blue; 
-    }
+    
     
     .badge {
-      border: 2px dashed black;
+      border: 2px dashed navy;
       border-radius: 50%; 
       background-color: navajowhite;
       color: black; 
@@ -28,29 +26,30 @@ class MeritBadge extends LitElement {
       line-height: 200px 
       padding: 50px; 
       margin: 20px;
-      height: 700px;
+      height: 400px;
+      width: 400px;
       color: black;
+      padding: 50px 50px 50px 50px;
     }
     
     .date{
-      justify-content: center;
-      color: black;  
-      padding: 100px 100px 100px 100px 
+      
     }
 
-    .icon{
+    .logo{
       justify-content: center; 
-      color: black
+      color: black;
+    
     }
 
     .title{
       justify-content: center;
-
+      padding 100px; 
     }
 
     .detailsIcon{
       justify-content: right; 
-      size: 500px;
+      
     }
 
     .skillsIcon{
@@ -60,30 +59,80 @@ class MeritBadge extends LitElement {
 
     .verificationLinkIcon{ 
       justify-content: left; 
-      size: 500px;
+     
     }
+
+
+    //Curved Text Attempt: 
+
+    
+    
+    .char1 { transform: rotate(6deg); }
+    .char2 { transform: rotate(12deg); }
+    .char3 { transform: rotate(18deg); }
+    .char4 { transform: rotate(24deg); }
+    .char5 { transform: rotate(30deg); }
+    .char6 { transform: rotate(36deg); }
+    .char7 { transform: rotate(42deg); }
+    .char8 { transform: rotate(48deg); }
+    .char9 { transform: rotate(54deg); }
+    .char10 { transform: rotate(60deg); }
+    .char11 { transform: rotate(66deg); }
+    .char12 { transform: rotate(72deg); }
+    .char13 { transform: rotate(78deg); }
   `;
 
   constructor() {
     super();
-    this.header ="Testing Header";
-    this.date = "April 20th, 2023";
-    this.logo = "communication:business";
+    this.header = "Testing Header";
+    this.date = "April 23, 2023";
+    this.logo = "https://static.thenounproject.com/png/65999-200.png";
     this.title = "Art of the Middle Ages";
-    this.iconOne= "verified-user";
-    this.iconTwo= "add";
-    this.iconThree="image:details";
-    
+    this.iconOne = "verified-user";
+    this.iconTwo = "add";
+    this.iconThree = "image:details";
   }
 
+  
+  processText(text) {
+    // empty whats there
+    this.shadowRoot.querySelector(".date").innerHTML = "";
+    // loop through text to process and convert to span tags
+    for (var i = 0; i < text.length; i++) {
+      let tag = document.createElement("span");
+      if (text.charAt(i).match(/[a-z]/i)) {
+        tag.classList.add("letter");
+        tag.innerText = text.charAt(i);
+      } else {
+        tag = document.createTextNode(text.charAt(i));
+      }
+      this.shadowRoot.querySelector(".date").appendChild(tag);
+    }
+  }
 
 
 
   render() {
     return html`
       <div class="badge">
-        <h2 id="date" title="date">${this.date}</h2>
-        <simple-icon class="icon">${this.logo}</simple-icon>
+        <h2 class="curvedDate">
+            <span class="char1">A</span>
+            <span class="char2">p</span>
+            <span class="char3">r</span>
+            <span class="char4">i</span>
+            <span class="char5">l</span>
+            <span class="char6">2</span>
+            <span class="char7">3</span>
+            <span class="char8">,</span>
+            <span class="char9"></span>
+            <span class="char10">2</span>
+            <span class="char11">0</span>
+            <span class="char12">2</span>
+            <span class="char13">3</span>
+        </h2>
+
+        <!-- <h2 class="date">${this.date.split('').map((letter, index) => html`<span class="char${index+1}">${letter}</span>`)}</h2> -->
+        <img src="${this.logo}"class="logo" >
         <h2 class="title">${this.title}</h1>
         <simple-icon class="detailsIcon" icon="${this.iconThree}"> </simple-icon>
         <simple-icon class="skillsIcon" icon="${this.iconTwo}"> </simple-icon> 
