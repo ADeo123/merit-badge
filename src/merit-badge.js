@@ -110,6 +110,8 @@ class MeritBadge extends LitElement {
     }
   }
 
+ 
+
 
 
   render() {
@@ -131,7 +133,7 @@ class MeritBadge extends LitElement {
             <span class="char13">3</span>
         </h2>
 
-        <!-- <h2 class="date">${this.date.split('').map((letter, index) => html`<span class="char${index+1}">${letter}</span>`)}</h2> -->
+        <h2 class="date">${this.date.split('').map((letter, index) => html`<span class="char${index+1}">${letter}</span>`)}</h2>
         <img src="${this.logo}"class="logo" >
         <h2 class="title">${this.title}</h1>
         <simple-icon class="detailsIcon" icon="${this.iconThree}"> </simple-icon>
