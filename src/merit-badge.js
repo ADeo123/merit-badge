@@ -12,13 +12,22 @@ class MeritBadge extends LitElement {
     iconOne: { type: String },
     iconTwo: { type: String },
     iconThree: { type: String },
+    accentColor: {
+      type: String,
+      reflect: true,
+      attribute: 'accent-color'}
   };
 
   static styles = css`
     
-    
+    :host{
+      --stichingColor: blue; //css variable for the sitching color
+      --lockedBackgroundColor: gray; //background color for the locked version of the card. 
+    }
+
+
     .badge {
-      border: 2px dashed navy;
+      border: 2px dashed var(--stichingColor) ;
       border-radius: 50%; 
       background-color: navajowhite;
       color: black; 
@@ -32,24 +41,23 @@ class MeritBadge extends LitElement {
       padding: 50px 50px 50px 50px;
     }
     
-    .date{
-      
+    .curvedDate{
+      align-content: center;
+      color: black; 
     }
 
-    .logo{
-      justify-content: center; 
-      color: black;
-    
+    .logoImage{
+      align-content: center; 
+      color: black; 
     }
 
-    .title{
-      justify-content: center;
-      padding 100px; 
+    .curvedTitle{
+      align-content: center; 
+      color: black; 
     }
 
     .detailsIcon{
       justify-content: right; 
-      
     }
 
     .skillsIcon{
@@ -59,33 +67,48 @@ class MeritBadge extends LitElement {
 
     .verificationLinkIcon{ 
       justify-content: left; 
-     
+    }
+
+    .body {
+      justify-content: center; 
+      font-size: 35px;
+   }
+
+    path {
+      fill: transparent;
+      align: center;
+   }
+
+    text {
+      fill: black;
+      align: right; 
     }
 
 
-    //Curved Text Attempt: 
+    ///Needs to reference the text that wraps upwards (title)
+    .bodyTwo {
+      justify-content: center; 
+      font-size: 35px;
+   }
 
-    
-    
-    .char1 { transform: rotate(6deg); }
-    .char2 { transform: rotate(12deg); }
-    .char3 { transform: rotate(18deg); }
-    .char4 { transform: rotate(24deg); }
-    .char5 { transform: rotate(30deg); }
-    .char6 { transform: rotate(36deg); }
-    .char7 { transform: rotate(42deg); }
-    .char8 { transform: rotate(48deg); }
-    .char9 { transform: rotate(54deg); }
-    .char10 { transform: rotate(60deg); }
-    .char11 { transform: rotate(66deg); }
-    .char12 { transform: rotate(72deg); }
-    .char13 { transform: rotate(78deg); }
+    .curveTwo {
+      fill: transparent;
+      align: center;
+   }
+
+    .textTwo {
+      fill: black;
+      align: right; 
+    }
+
+
+
   `;
 
   constructor() {
     super();
     this.header = "Testing Header";
-    this.date = "April 23, 2023";
+    this.date = "April 24, 2023";
     this.logo = "https://static.thenounproject.com/png/65999-200.png";
     this.title = "Art of the Middle Ages";
     this.iconOne = "verified-user";
@@ -93,49 +116,39 @@ class MeritBadge extends LitElement {
     this.iconThree = "image:details";
   }
 
-  
-  processText(text) {
-    // empty whats there
-    this.shadowRoot.querySelector(".date").innerHTML = "";
-    // loop through text to process and convert to span tags
-    for (var i = 0; i < text.length; i++) {
-      let tag = document.createElement("span");
-      if (text.charAt(i).match(/[a-z]/i)) {
-        tag.classList.add("letter");
-        tag.innerText = text.charAt(i);
-      } else {
-        tag = document.createTextNode(text.charAt(i));
-      }
-      this.shadowRoot.querySelector(".date").appendChild(tag);
-    }
-  }
-
- 
-
-
-
   render() {
     return html`
       <div class="badge">
-        <h2 class="curvedDate">
-            <span class="char1">A</span>
-            <span class="char2">p</span>
-            <span class="char3">r</span>
-            <span class="char4">i</span>
-            <span class="char5">l</span>
-            <span class="char6">2</span>
-            <span class="char7">3</span>
-            <span class="char8">,</span>
-            <span class="char9"></span>
-            <span class="char10">2</span>
-            <span class="char11">0</span>
-            <span class="char12">2</span>
-            <span class="char13">3</span>
-        </h2>
+        
+      <div class="curvedDate"> 
+        <svg viewBox="0 0 500 100" class="body">
+          <path id="curve" d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97" />
+            <text width="100">
+              <textPath xlink:href="#curve"startOffset="50%" text-anchor="middle">
+                ${this.date}
+              </textPath>
+           </text>
+        </svg>
+      </div>
 
-        <h2 class="date">${this.date.split('').map((letter, index) => html`<span class="char${index+1}">${letter}</span>`)}</h2>
+        <!-- <h2 class="date">${this.date.split('').map((letter, index) => html`<span class="char${index+1}">${letter}</span>`)}</h2> -->
+        
+        <div class="logoImage">
         <img src="${this.logo}"class="logo" >
-        <h2 class="title">${this.title}</h1>
+        </div>
+        <!-- <h2 class="title">${this.title}</h1> -->
+        
+        <div class="curvedTitle">
+        <svg viewBox="0 0 500 100" id="bodyTwo">
+          <path id="curveTwo" d="M0,50 a1,1 0 0,0 100,0" />
+            <text width="100" id="textTwo">
+              <textPath xlink:href="#curveTwo" startOffset="50%" text-anchor="middle">
+                ${this.title}
+              </textPath>
+           </text>
+        </svg>
+        </div>
+
         <simple-icon class="detailsIcon" icon="${this.iconThree}"> </simple-icon>
         <simple-icon class="skillsIcon" icon="${this.iconTwo}"> </simple-icon> 
         <simple-icon class="verificationLinkIcon" icon="${this.iconOne}"> </simple-icon>
