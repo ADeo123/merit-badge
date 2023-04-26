@@ -12,10 +12,7 @@ class MeritBadge extends LitElement {
     iconOne: { type: String },
     iconTwo: { type: String },
     iconThree: { type: String },
-    accentColor: {
-      type: String,
-      reflect: true,
-      attribute: 'accent-color'}
+    locked: {type: Boolean},
   };
 
   static styles = css`
@@ -23,6 +20,8 @@ class MeritBadge extends LitElement {
     :host{
       --stichingColor: blue; //css variable for the sitching color
       --lockedBackgroundColor: gray; //background color for the locked version of the card. 
+      --meritBadgeBackgroundColor: navajowhite; //background color for the whole badge 
+      --fontColor: black; //font color
     }
 
 
@@ -30,7 +29,7 @@ class MeritBadge extends LitElement {
       border: 2px dashed var(--stichingColor) ;
       border-radius: 50%; 
       background-color: navajowhite;
-      color: black; 
+      color: var(--fontColor); 
       text-align: center;
       line-height: 200px 
       padding: 50px; 
@@ -51,9 +50,9 @@ class MeritBadge extends LitElement {
       color: black; 
     }
 
-    .curvedTitle{
+    .title{
       align-content: center; 
-      color: black; 
+      font-size: 30px;
     }
 
     .detailsIcon{
@@ -71,7 +70,8 @@ class MeritBadge extends LitElement {
 
     .body {
       justify-content: center; 
-      font-size: 35px;
+      font-size: 45px;
+      color: 2px black; 
    }
 
     path {
@@ -83,42 +83,38 @@ class MeritBadge extends LitElement {
       fill: black;
       align: right; 
     }
-
-
-    ///Needs to reference the text that wraps upwards (title)
-    .bodyTwo {
-      justify-content: center; 
-      font-size: 35px;
-   }
-
-    .curveTwo {
-      fill: transparent;
-      align: center;
-   }
-
-    .textTwo {
-      fill: black;
-      align: right; 
-    }
-
-
-
   `;
 
   constructor() {
     super();
     this.header = "Testing Header";
-    this.date = "April 24, 2023";
+    this.date = "April 25, 2023";
     this.logo = "https://static.thenounproject.com/png/65999-200.png";
     this.title = "Art of the Middle Ages";
     this.iconOne = "verified-user";
     this.iconTwo = "add";
     this.iconThree = "image:details";
+    this.locked = true;
+  }
+  
+  unlockButton(){
+    this.locked = !this.locked;
+    if(this.locked){
+      this.shadowRoot.querySelector('.badge').style.background = 'gray';
+    }else{
+      this.shadowRoot.querySelector('.badge').style.background = 'blue';
+    }
+    
   }
 
+
+
   render() {
-    return html`
-      <div class="badge">
+    return html`  
+
+      <button @click="${this.unlockButton}"> Toggle Lock </button>
+
+      <div class="badge"> 
         
       <div class="curvedDate"> 
         <svg viewBox="0 0 500 100" class="body">
@@ -134,24 +130,34 @@ class MeritBadge extends LitElement {
         <!-- <h2 class="date">${this.date.split('').map((letter, index) => html`<span class="char${index+1}">${letter}</span>`)}</h2> -->
         
         <div class="logoImage">
-        <img src="${this.logo}"class="logo" >
+        <img src="${this.logo}"class="logo">
         </div>
-        <!-- <h2 class="title">${this.title}</h1> -->
+
+        <h2 class="title">${this.title}</h1>
         
-        <div class="curvedTitle">
-        <svg viewBox="0 0 500 100" id="bodyTwo">
-          <path id="curveTwo" d="M0,50 a1,1 0 0,0 100,0" />
-            <text width="100" id="textTwo">
-              <textPath xlink:href="#curveTwo" startOffset="50%" text-anchor="middle">
+        <!-- <div class="curvedTitle">
+        <svg viewBox="0 0 500 500" class="body" height="1000" width="1000">
+          <path id="curve2" d="M0,50 a1,1 0 0,0 100,0" />
+            <text width="100">
+              <textPath xlink:href="#curve2" >
                 ${this.title}
               </textPath>
            </text>
         </svg>
+        </div> -->
+
+        <div class="details">
+          <simple-icon class="detailsIcon" icon="${this.iconThree}"> </simple-icon> 
         </div>
 
-        <simple-icon class="detailsIcon" icon="${this.iconThree}"> </simple-icon>
-        <simple-icon class="skillsIcon" icon="${this.iconTwo}"> </simple-icon> 
-        <simple-icon class="verificationLinkIcon" icon="${this.iconOne}"> </simple-icon>
+        <div class="skills">
+          <simple-icon class="skillsIcon" icon="${this.iconTwo}"> </simple-icon> 
+        </div>
+
+        <div class="verification">
+          <simple-icon class="verificationLinkIcon" icon="${this.iconOne}"> </simple-icon>
+        </div>
+        
       </div>
     `;
   }
