@@ -6,13 +6,16 @@ import "@lrnwebcomponents/simple-icon/lib/simple-icons.js";
 class MeritBadge extends LitElement {
   static properties = {
     header: { type: String },
-    date: { type: String },
+    date: { type: Date},
     logo: { type: String },
     title: { type: String },
     iconOne: { type: String },
     iconTwo: { type: String },
     iconThree: { type: String },
     locked: {type: Boolean},
+    day: {type: String},
+    month: {type: String},
+    year: {type: String},
   };
 
   static styles = css`
@@ -101,19 +104,28 @@ class MeritBadge extends LitElement {
       align: right; 
     }
 
-
   `;
+
+  getDate(){
+    var date = new Date();
+    var day = String(date.getDay);
+    var month = String(date.getMonth);
+    var year = String(date.getFullYear);
+    var date = date.toDateString(month + " " + day + ", " + year);
+    return date;
+  }
 
   constructor() {
     super();
     this.header = "Testing Header";
-    this.date = "April 25, 2023";
+    this.date = getDate();
     this.logo = "https://static.thenounproject.com/png/65999-200.png";
     this.title = "Art of the Middle Ages";
     this.iconOne = "verified-user";
     this.iconTwo = "add";
     this.iconThree = "image:details";
     this.locked = true;
+  
   }
 
   
@@ -122,12 +134,10 @@ class MeritBadge extends LitElement {
     if(this.locked){
       this.shadowRoot.querySelector(".lockedBadge").style.visibility='visible';
       this.shadowRoot.querySelector(".badge").style.visibility='hidden';
-
     }else{
       this.shadowRoot.querySelector(".lockedBadge").style.visibility='hidden';
       this.shadowRoot.querySelector(".badge").style.visibility='visible';
     }
-    
   }
 
   //
@@ -166,8 +176,7 @@ class MeritBadge extends LitElement {
           </svg>
         </div>
   
-          <!-- <h2 class="date">${this.date.split('').map((letter, index) => html`<span class="char${index+1}">${letter}</span>`)}</h2> -->
-          
+        
           <div class="logoImage">
           <img src="${this.logo}"class="logo">
           </div>
