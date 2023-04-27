@@ -2,6 +2,7 @@ import { LitElement, html, css } from "lit";
 import "@lrnwebcomponents/absolute-position-behavior/absolute-position-behavior.js";
 import "@lrnwebcomponents/simple-icon/simple-icon.js";
 import "@lrnwebcomponents/simple-icon/lib/simple-icons.js";
+import "@lrnwebcomponents/simple-icon/lib/simple-icon-button.js";
 
 class MeritBadge extends LitElement {
   static properties = {
@@ -16,6 +17,7 @@ class MeritBadge extends LitElement {
     day: {type: String},
     month: {type: String},
     year: {type: String},
+    skills:{type: Array},
   };
 
   static styles = css`
@@ -82,18 +84,7 @@ class MeritBadge extends LitElement {
       font-size: 30px;
     }
 
-    .detailsIcon{
-      justify-content: right; 
-    }
-
-    .skillsIcon{
-      justify-content: center; 
-    }
-
-    .verificationLinkIcon{ 
-      justify-content: left; 
-    }
-
+  
     .body {
       justify-content: center; 
       font-size: 45px;
@@ -123,6 +114,7 @@ class MeritBadge extends LitElement {
     this.iconTwo = "add";
     this.iconThree = "image:details";
     this.locked = true;
+    this.skills = ['Computers', 'Business','Biology'];
   
   }
 
@@ -142,7 +134,7 @@ class MeritBadge extends LitElement {
     }else{
       this.shadowRoot.querySelector(".lockedBadge").style.visibility='hidden';
       this.shadowRoot.querySelector(".badge").style.visibility='visible';
-      this.shadowRoot.querySelector(".date").innerHTML = this.getDate();
+      // this.shadowRoot.querySelector(".date").innerHTML = this.getDate();
     }
   }
 
@@ -151,20 +143,20 @@ class MeritBadge extends LitElement {
     if (super.firstUpdated) {
       super.firstUpdated(changedProperties);
     }
-    this.activeNode = this.shadowRoot.querySelector(".skills");
+    this.activeNode = this.shadowRoot.querySelector("#skillList");
   }
 
   //skills is stateful 
   skillClick(e) {
     this.skillsOpened = !this.skillsOpened;
+    console.log(this.skillsOpened)
   }
-
 
   render() {
     return html`  
 
       <button @click="${this.unlockButton}"> Toggle Lock </button>
-      <button @click="${this.skillClick}"> Toggle Skills </button>
+      <!-- <button @click="${this.skillClick}"> Toggle Skills </button> -->
 
       <div class="lockedBadge">
         <img src="https://www.freeiconspng.com/thumbs/lock-icon/lock-icon-11.png">
@@ -189,8 +181,8 @@ class MeritBadge extends LitElement {
           <h2 class="title">${this.title}</h1>
           
           <!-- <div class="curvedTitle">
-          <svg viewBox="0 0 500 500" class="body" height="1000" width="1000">
-            <path id="curve2" d="M0,50 a1,1 0 0,0 100,0" />
+          <svg viewBox="0 0 500 500" class="body">
+            <path id="curve2" d="M 130 110 C 120 140, 180 140, 170 110" />
               <text width="100">
                 <textPath xlink:href="#curve2" >
                   ${this.title}
@@ -198,23 +190,40 @@ class MeritBadge extends LitElement {
              </text>
           </svg>
           </div> -->
-  
+
+        <div>
           <div class="details">
             <a href="https://www.w3schools.com/js/default.asp" target=”_blank”>
               <simple-icon class="detailsIcon" icon="${this.iconThree}"> </simple-icon>
             </a>
           </div>
   
-          <div class="skills">
+          <!-- <div class="skills">
             <simple-icon class="skillsIcon" icon="${this.iconTwo}"> </simple-icon> 
-          </div>
-  
+          </div> -->
+
           <div class="verification">
             <a href="https://vercel.com/login" target=”_blank”>
               <simple-icon class="verificationLinkIcon" icon="${this.iconOne}"> </simple-icon>
             </a>
           </div>
         </div>
+      
+
+        <badge-sticker id="skillList">
+          <simple-icon-button icon="cancel" @click="${this.skillClick}"></simple-icon-button>
+        </badge-sticker>
+
+        <absolute-position-behavior
+            justify
+            position="bottom"
+            allow-overlap
+            sticky
+            auto
+            .target="${this.activeNode}"
+            ?hidden="${!this.skillsOpened}">
+              ${this.skills.map(item => html`<li>${item}</li>`)}
+          </absolute-position-behavior>
 
     `;
   }
