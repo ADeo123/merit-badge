@@ -34,7 +34,7 @@ class MeritBadge extends LitElement {
       position: absolute; 
       border: 2px dashed var(--stichingColor) ;
       border-radius: 50%; 
-      background-color: navajowhite;
+      background-color: var(--simple-colors-default-theme-brown-1);
       color: var(--fontColor); 
       text-align: center;
       line-height: 200px 
@@ -44,18 +44,18 @@ class MeritBadge extends LitElement {
       width: 400px;
       color: black;
       padding: 50px 50px 50px 50px;
-      box-shadow: 0 0 0 4px navajowhite, 2px 1px 6px 4px ; 
+      box-shadow: 0 0 0 4px var(--simple-colors-default-theme-brown-1), 2px 1px 6px 4px ; 
     }
 
     .lockedBadge{
       z-index: 6;
       top: 10px;
       left: 10px;
+      opacity: 85%;
       position: absolute;
       border: 2px dashed var(--stichingColor) ;
       border-radius: 50%; 
-      background-color: gray;
-      opacity: 75%;
+      background-color: var(--simple-colors-default-theme-grey-9);
       color: var(--fontColor); 
       text-align: center;
       line-height: 200px 
@@ -64,7 +64,7 @@ class MeritBadge extends LitElement {
       height: 400px;
       width: 400px;
       padding: 50px 50px 50px 50px;
-      box-shadow: 0 0 0 4px gray, 2px 1px 6px 4px ; 
+      box-shadow: 0 0 0 4px var(--simple-colors-default-theme-grey-9), 2px 1px 6px 4px ; 
     }
     
     .curvedDate{
@@ -88,7 +88,6 @@ class MeritBadge extends LitElement {
 
     .skillsIcon{
       justify-content: center; 
-      size: 500px
     }
 
     .verificationLinkIcon{ 
@@ -113,7 +112,6 @@ class MeritBadge extends LitElement {
 
   `;
 
-  
 
   constructor() {
     super();
@@ -140,7 +138,7 @@ class MeritBadge extends LitElement {
     this.locked = !this.locked;
     if(this.locked){
       this.shadowRoot.querySelector(".lockedBadge").style.visibility='visible';
-      this.shadowRoot.querySelector(".badge").style.visibility='hidden';
+      this.shadowRoot.querySelector(".badge").style.visibility='visible';
     }else{
       this.shadowRoot.querySelector(".lockedBadge").style.visibility='hidden';
       this.shadowRoot.querySelector(".badge").style.visibility='visible';
@@ -153,7 +151,7 @@ class MeritBadge extends LitElement {
     if (super.firstUpdated) {
       super.firstUpdated(changedProperties);
     }
-    this.activeNode = this.shadowRoot.querySelector(".badge");
+    this.activeNode = this.shadowRoot.querySelector(".skills");
   }
 
   //skills is stateful 
@@ -166,6 +164,7 @@ class MeritBadge extends LitElement {
     return html`  
 
       <button @click="${this.unlockButton}"> Toggle Lock </button>
+      <button @click="${this.skillClick}"> Toggle Skills </button>
 
       <div class="lockedBadge">
         <img src="https://www.freeiconspng.com/thumbs/lock-icon/lock-icon-11.png">
@@ -215,7 +214,6 @@ class MeritBadge extends LitElement {
               <simple-icon class="verificationLinkIcon" icon="${this.iconOne}"> </simple-icon>
             </a>
           </div>
-
         </div>
 
     `;
