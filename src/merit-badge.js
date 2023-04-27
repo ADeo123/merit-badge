@@ -6,7 +6,7 @@ import "@lrnwebcomponents/simple-icon/lib/simple-icons.js";
 class MeritBadge extends LitElement {
   static properties = {
     header: { type: String },
-    date: { type: Date},
+    date: { type: String},
     logo: { type: String },
     title: { type: String },
     iconOne: { type: String },
@@ -21,13 +21,17 @@ class MeritBadge extends LitElement {
   static styles = css`
     
     :host{
-      --stichingColor: blue; //css variable for the sitching color
+      --stichingColor: black; //css variable for the sitching color
       --lockedBackgroundColor: gray; //background color for the locked version of the card. 
       --fontColor: black; //font color
     }
 
 
     .badge {
+      z-index: 5;
+      top: 10px;
+      left:10px; 
+      position: absolute; 
       border: 2px dashed var(--stichingColor) ;
       border-radius: 50%; 
       background-color: navajowhite;
@@ -44,6 +48,10 @@ class MeritBadge extends LitElement {
     }
 
     .lockedBadge{
+      z-index: 6;
+      top: 10px;
+      left: 10px;
+      position: absolute;
       border: 2px dashed var(--stichingColor) ;
       border-radius: 50%; 
       background-color: gray;
@@ -58,7 +66,6 @@ class MeritBadge extends LitElement {
       padding: 50px 50px 50px 50px;
       box-shadow: 0 0 0 4px gray, 2px 1px 6px 4px ; 
     }
-    
     
     .curvedDate{
       align-content: center;
@@ -106,19 +113,12 @@ class MeritBadge extends LitElement {
 
   `;
 
-  getDate(){
-    var date = new Date();
-    var day = String(date.getDay);
-    var month = String(date.getMonth);
-    var year = String(date.getFullYear);
-    var date = date.toDateString(month + " " + day + ", " + year);
-    return date;
-  }
+  
 
   constructor() {
     super();
     this.header = "Testing Header";
-    this.date = getDate();
+    this.date = this.getDate();
     this.logo = "https://static.thenounproject.com/png/65999-200.png";
     this.title = "Art of the Middle Ages";
     this.iconOne = "verified-user";
@@ -128,6 +128,13 @@ class MeritBadge extends LitElement {
   
   }
 
+  getDate(){
+    var date = new Date();
+    var day = date.getDate()
+    var month = date.getMonth()+1
+    var year = date.getFullYear()
+    return " "+ day.toString() + "/" + month.toString() + "/" + year.toString();
+  }
   
   unlockButton(){
     this.locked = !this.locked;
@@ -137,6 +144,7 @@ class MeritBadge extends LitElement {
     }else{
       this.shadowRoot.querySelector(".lockedBadge").style.visibility='hidden';
       this.shadowRoot.querySelector(".badge").style.visibility='visible';
+      this.shadowRoot.querySelector(".date").innerHTML = this.getDate();
     }
   }
 
@@ -164,7 +172,6 @@ class MeritBadge extends LitElement {
       </div>
 
       <div class="badge"> 
-        
         <div class="curvedDate"> 
           <svg viewBox="0 0 500 100" class="body">
             <path id="curve" d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97" />
@@ -176,7 +183,6 @@ class MeritBadge extends LitElement {
           </svg>
         </div>
   
-        
           <div class="logoImage">
           <img src="${this.logo}"class="logo">
           </div>
@@ -195,7 +201,9 @@ class MeritBadge extends LitElement {
           </div> -->
   
           <div class="details">
-            <simple-icon class="detailsIcon" icon="${this.iconThree}"> </simple-icon> 
+            <a href="https://www.w3schools.com/js/default.asp" target=”_blank”>
+              <simple-icon class="detailsIcon" icon="${this.iconThree}"> </simple-icon>
+            </a>
           </div>
   
           <div class="skills">
@@ -203,8 +211,11 @@ class MeritBadge extends LitElement {
           </div>
   
           <div class="verification">
-            <simple-icon class="verificationLinkIcon" icon="${this.iconOne}"> </simple-icon>
+            <a href="https://vercel.com/login" target=”_blank”>
+              <simple-icon class="verificationLinkIcon" icon="${this.iconOne}"> </simple-icon>
+            </a>
           </div>
+
         </div>
 
     `;
