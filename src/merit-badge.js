@@ -84,7 +84,6 @@ class MeritBadge extends LitElement {
       font-size: 30px;
     }
 
-  
     .body {
       justify-content: center; 
       font-size: 45px;
@@ -102,7 +101,6 @@ class MeritBadge extends LitElement {
     }
 
   `;
-
 
   constructor() {
     super();
@@ -138,7 +136,7 @@ class MeritBadge extends LitElement {
     }
   }
 
-  //
+  
   firstUpdated(changedProperties) {
     if (super.firstUpdated) {
       super.firstUpdated(changedProperties);
@@ -146,7 +144,7 @@ class MeritBadge extends LitElement {
     this.activeNode = this.shadowRoot.querySelector("#skillList");
   }
 
-  //skills is stateful 
+   
   skillClick(e) {
     this.skillsOpened = !this.skillsOpened;
     console.log(this.skillsOpened)
@@ -209,11 +207,10 @@ class MeritBadge extends LitElement {
           </div>
         </div>
       
-
         <badge-sticker id="skillList">
           <simple-icon-button icon="cancel" @click="${this.skillClick}"></simple-icon-button>
         </badge-sticker>
-
+  </div>
         <absolute-position-behavior
             justify
             position="bottom"
@@ -224,7 +221,6 @@ class MeritBadge extends LitElement {
             ?hidden="${!this.skillsOpened}">
               ${this.skills.map(item => html`<li>${item}</li>`)}
           </absolute-position-behavior>
-
     `;
   }
 }
