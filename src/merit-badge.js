@@ -18,6 +18,8 @@ class MeritBadge extends LitElement {
     month: {type: String},
     year: {type: String},
     skills:{type: Array},
+    activeNode: {type: Object},
+    skillsOpened: {type: Boolean},
   };
 
   static styles = css`
@@ -99,6 +101,14 @@ class MeritBadge extends LitElement {
       fill: black;
       align: right; 
     }
+    .skills {
+      background-color: grey;
+      padding: 10px;
+      margin: 5px;
+      border: 6px solid black;
+      width: 100%;
+      min-width: 100px;
+    }
 
   `;
 
@@ -113,7 +123,8 @@ class MeritBadge extends LitElement {
     this.iconThree = "image:details";
     this.locked = true;
     this.skills = ['Computers', 'Business','Biology'];
-  
+    this.activeNode = null;
+    this.skillsOpened = false;
   }
 
   getDate(){
@@ -219,7 +230,7 @@ class MeritBadge extends LitElement {
             auto
             .target="${this.activeNode}"
             ?hidden="${!this.skillsOpened}">
-              ${this.skills.map(item => html`<li>${item}</li>`)}
+              <ul class="skills">${this.skills.map(item => html`<li>${item}</li>`)}</ul>
           </absolute-position-behavior>
     `;
   }
