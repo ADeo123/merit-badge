@@ -122,9 +122,8 @@ class MeritBadge extends LitElement {
       width: 100%;
       min-width: 100px;
     }
-
+    
   `;
-
   constructor() {
     super();
     this.header = "Testing Header";
@@ -213,28 +212,6 @@ class MeritBadge extends LitElement {
           </div>
   
           <h2 class="title">${this.title}</h1>
-          
-          <!-- <div class="curvedTitle">
-          <svg viewBox="0 0 500 500" class="body">
-            <path id="curve2" d="M 130 110 C 120 140, 180 140, 170 110" />
-              <text width="100">
-                <textPath xlink:href="#curve2" >
-                  ${this.title}
-                </textPath>
-             </text>
-          </svg>
-          </div> -->
-
-          <!-- <div>
-          <div class="details">
-            <a href="https://www.w3schools.com/js/default.asp" target=”_blank”>
-              <simple-icon class="detailsIcon" icon="${this.iconThree}"> </simple-icon>
-            </a>
-          </div> -->
-  
-          <!-- <div class="skills">
-            <simple-icon class="skillsIcon" icon="${this.iconTwo}"> </simple-icon> 
-          </div> -->
 
         <a href="https://vercel.com/login" target=”_blank”>
             <simple-icon class="verificationLinkIcon" icon="${this.iconOne}"></simple-icon>
@@ -248,27 +225,27 @@ class MeritBadge extends LitElement {
           <simple-icon-button icon="${this.iconThree}" @click="${this.detailsClick}"></simple-icon-button>
         </badge-sticker>
           
-          <absolute-position-behavior
-            justify
-            position="bottom"
-            allow-overlap
-            sticky
-            auto
-            .target="${this.activeNode}"
-            ?hidden="${!this.skillsOpened}">
-              <ul class="skills">${this.skills.map(item => html`<li>${item}</li>`)}</ul>
-          </absolute-position-behavior>
+        <absolute-position-behavior
+          justify
+          position="bottom"
+          allow-overlap
+          sticky
+          auto
+          .target="${this.activeNode}"
+          ?hidden="${!this.skillsOpened}">
+            <ul class="skills">${this.skills.map(item => html`<li>${item}</li>`)}</ul>
+        </absolute-position-behavior>
 
-          <absolute-position-behavior
-            justify
-            position="bottom"
-            allow-overlap
-            sticky
-            auto
-            .target="${this.activeNode}"
-            ?hidden="${!this.detailsOpened}">
-              <ul class="detailsTwo">${this.details.map(item => html`<li>${item}</li>`)}</ul>
-          </absolute-position-behavior>
+        <absolute-position-behavior
+          justify
+          position="bottom"
+          allow-overlap
+          sticky
+          auto
+          .target="${this.activeNode}"
+          ?hidden="${!this.detailsOpened}">
+           <ul class="detailsTwo">${this.details.map(item => html`<li>${item}</li>`)}</ul>
+        </absolute-position-behavior>
     `;
   }
 }
