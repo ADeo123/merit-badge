@@ -28,9 +28,9 @@ class MeritBadge extends LitElement {
   static styles = css`
     
     :host{
-      --stichingColor: black; //css variable for the sitching color
-      --lockedBackgroundColor: gray; //background color for the locked version of the card. 
-      --fontColor: black; //font color
+      --stichingColor: black; 
+      --lockedBackgroundColor: gray; 
+      --fontColor: black; 
     }
 
 
@@ -92,7 +92,7 @@ class MeritBadge extends LitElement {
     .body {
       justify-content: center; 
       font-size: 45px;
-      color: 2px black; 
+      color: 4px solid black; 
    }
 
     path {
@@ -138,7 +138,7 @@ class MeritBadge extends LitElement {
       width: 70px;
       height: 300px;
       margin-left: -35px;
-      line-height: 530px; /* height*2 - font-size */
+      line-height: 530px; 
       text-align: center;
       transform-origin: top center;
     }
@@ -249,8 +249,7 @@ class MeritBadge extends LitElement {
           <img src="${this.logo}"class="logo">
           </div>
   
-      <!-- <h2 class="title">${this.title}</h1> -->
-      <h2 class="curvedTitle">
+        <h2 class="curvedTitle">
             <span class="char1">The</span>
             <span class="char2">Art</span>
             <span class="char3">Of</span>
