@@ -19,7 +19,10 @@ class MeritBadge extends LitElement {
     year: {type: String},
     skills:{type: Array},
     activeNode: {type: Object},
+    activeNodeTwo: {type: Object},
     skillsOpened: {type: Boolean},
+    details: {type: Array},
+    detailsOpened: {type: Boolean},
   };
 
   static styles = css`
@@ -110,6 +113,15 @@ class MeritBadge extends LitElement {
       min-width: 100px;
     }
 
+    .detailsTwo{
+      background-color: grey;
+      padding: 10px;
+      margin: 5px;
+      border: 6px solid black;
+      width: 100%;
+      min-width: 100px;
+    }
+
   `;
 
   constructor() {
@@ -123,8 +135,10 @@ class MeritBadge extends LitElement {
     this.iconThree = "image:details";
     this.locked = true;
     this.skills = ['Computers', 'Business','Biology'];
+    this.details = ['JavaScript', 'Management', "Science"];
     this.activeNode = null;
     this.skillsOpened = false;
+    this.detailsOpened = false;
   }
 
   getDate(){
@@ -143,11 +157,10 @@ class MeritBadge extends LitElement {
     }else{
       this.shadowRoot.querySelector(".lockedBadge").style.visibility='hidden';
       this.shadowRoot.querySelector(".badge").style.visibility='visible';
-      // this.shadowRoot.querySelector(".date").innerHTML = this.getDate();
     }
   }
 
-  
+  //skills popover 
   firstUpdated(changedProperties) {
     if (super.firstUpdated) {
       super.firstUpdated(changedProperties);
@@ -155,17 +168,28 @@ class MeritBadge extends LitElement {
     this.activeNode = this.shadowRoot.querySelector("#skillList");
   }
 
-   
   skillClick(e) {
     this.skillsOpened = !this.skillsOpened;
     console.log(this.skillsOpened)
+  }
+
+//details popover
+  firstUpdated2(changedProperties) {
+    if (super.firstUpdated) {
+      super.firstUpdated(changedProperties);
+    }
+    this.activeNodeTwo = this.shadowRoot.querySelector("#detailList");
+  }
+
+  detailsClick(e) {
+    this.detailsOpened = !this.detailsOpened;
+    console.log(this.detailOpened)
   }
 
   render() {
     return html`  
 
       <button @click="${this.unlockButton}"> Toggle Lock </button>
-      <!-- <button @click="${this.skillClick}"> Toggle Skills </button> -->
 
       <div class="lockedBadge">
         <img src="https://www.freeiconspng.com/thumbs/lock-icon/lock-icon-11.png">
@@ -200,29 +224,30 @@ class MeritBadge extends LitElement {
           </svg>
           </div> -->
 
-        <div>
+          <!-- <div>
           <div class="details">
             <a href="https://www.w3schools.com/js/default.asp" target=”_blank”>
               <simple-icon class="detailsIcon" icon="${this.iconThree}"> </simple-icon>
             </a>
-          </div>
+          </div> -->
   
           <!-- <div class="skills">
             <simple-icon class="skillsIcon" icon="${this.iconTwo}"> </simple-icon> 
           </div> -->
 
-          <div class="verification">
-            <a href="https://vercel.com/login" target=”_blank”>
-              <simple-icon class="verificationLinkIcon" icon="${this.iconOne}"> </simple-icon>
-            </a>
-          </div>
-        </div>
-      
+          <a href="https://vercel.com/login" target=”_blank”>
+              <simple-icon class="verificationLinkIcon" icon="${this.iconOne}"></simple-icon>
+          </a>
+          
         <badge-sticker id="skillList">
-          <simple-icon-button icon="cancel" @click="${this.skillClick}"></simple-icon-button>
+          <simple-icon-button icon="${this.iconTwo}" @click="${this.skillClick}"></simple-icon-button>
         </badge-sticker>
-  </div>
-        <absolute-position-behavior
+       
+        <badge-sticker id="detailList">
+          <simple-icon-button icon="${this.iconThree}" @click="${this.detailsClick}"></simple-icon-button>
+        </badge-sticker>
+          
+          <absolute-position-behavior
             justify
             position="bottom"
             allow-overlap
@@ -231,6 +256,17 @@ class MeritBadge extends LitElement {
             .target="${this.activeNode}"
             ?hidden="${!this.skillsOpened}">
               <ul class="skills">${this.skills.map(item => html`<li>${item}</li>`)}</ul>
+          </absolute-position-behavior>
+
+          <absolute-position-behavior
+            justify
+            position="bottom"
+            allow-overlap
+            sticky
+            auto
+            .target="${this.activeNode}"
+            ?hidden="${!this.detailsOpened}">
+              <ul class="detailsTwo">${this.details.map(item => html`<li>${item}</li>`)}</ul>
           </absolute-position-behavior>
     `;
   }
