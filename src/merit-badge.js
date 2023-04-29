@@ -104,11 +104,12 @@ class MeritBadge extends LitElement {
       fill: black;
       align: right; 
     }
+
     .skills {
       background-color: grey;
       padding: 10px;
       margin: 5px;
-      border: 6px solid black;
+      border: 4px solid black;
       width: 100%;
       min-width: 100px;
     }
@@ -117,7 +118,7 @@ class MeritBadge extends LitElement {
       background-color: grey;
       padding: 10px;
       margin: 5px;
-      border: 6px solid black;
+      border: 4px solid black;
       width: 100%;
       min-width: 100px;
     }
@@ -235,10 +236,10 @@ class MeritBadge extends LitElement {
             <simple-icon class="skillsIcon" icon="${this.iconTwo}"> </simple-icon> 
           </div> -->
 
-          <a href="https://vercel.com/login" target=”_blank”>
-              <simple-icon class="verificationLinkIcon" icon="${this.iconOne}"></simple-icon>
-          </a>
-          
+        <a href="https://vercel.com/login" target=”_blank”>
+            <simple-icon class="verificationLinkIcon" icon="${this.iconOne}"></simple-icon>
+        </a>
+
         <badge-sticker id="skillList">
           <simple-icon-button icon="${this.iconTwo}" @click="${this.skillClick}"></simple-icon-button>
         </badge-sticker>
