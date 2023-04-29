@@ -123,6 +123,44 @@ class MeritBadge extends LitElement {
       min-width: 100px;
     }
     
+    .curvedTitle {
+      position: relative;
+      width: 100px;
+      height:100px;
+      margin: 0 auto;
+      font-size: 35px;
+    }
+    
+    .curvedTitle span {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 70px;
+      height: 300px;
+      margin-left: -35px;
+      line-height: 530px; /* height*2 - font-size */
+      text-align: center;
+      transform-origin: top center;
+    }
+    .curvedTitle span:nth-of-type(1)  {
+      transform: rotate(38deg);
+    }
+    .curvedTitle span:nth-of-type(2)  {
+      transform: rotate(25deg);
+    }
+    .curvedTitle span:nth-of-type(3)  {
+      transform: rotate(13deg);
+    }
+    .curvedTitle span:nth-of-type(4)  {
+      transform: rotate(0deg);
+    }
+    .curvedTitle span:nth-of-type(5)  {
+      transform: rotate(-15deg);
+    }
+    .curvedTitle span:nth-of-type(6)  {
+      transform: rotate(-38deg);
+    }
+
   `;
   constructor() {
     super();
@@ -211,7 +249,16 @@ class MeritBadge extends LitElement {
           <img src="${this.logo}"class="logo">
           </div>
   
-          <h2 class="title">${this.title}</h1>
+      <!-- <h2 class="title">${this.title}</h1> -->
+      <h2 class="curvedTitle">
+            <span class="char1">The</span>
+            <span class="char2">Art</span>
+            <span class="char3">Of</span>
+            <span class="char4">The</span>
+            <span class="char5">Middle</span>
+            <span class="char6">Ages</span>
+            <span class="char7"></span>
+        </h2>
 
         <a href="https://vercel.com/login" target=”_blank”>
             <simple-icon class="verificationLinkIcon" icon="${this.iconOne}"></simple-icon>
