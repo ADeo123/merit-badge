@@ -158,7 +158,7 @@ class MeritBadge extends LitElement {
       transform: rotate(-15deg);
     }
     .curvedTitle span:nth-of-type(6)  {
-      transform: rotate(-38deg);
+      transform: rotate(-39deg);
     }
 
   `;
