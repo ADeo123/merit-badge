@@ -23,6 +23,12 @@ class MeritBadge extends LitElement {
     skillsOpened: {type: Boolean},
     details: {type: Array},
     detailsOpened: {type: Boolean},
+    titleWordOne: {type: String},
+    titleWordTwo: {type: String},
+    titleWordThree: {type: String},
+    titleWordFour: {type: String},
+    titleWordFive: {type: String},
+    titleWordSix: {type: String},
   };
 
   static styles = css`
@@ -32,7 +38,6 @@ class MeritBadge extends LitElement {
       --lockedBackgroundColor: gray; 
       --fontColor: black; 
     }
-
 
     .badge {
       z-index: 5;
@@ -142,17 +147,18 @@ class MeritBadge extends LitElement {
       text-align: center;
       transform-origin: top center;
     }
+    
     .curvedTitle span:nth-of-type(1)  {
-      transform: rotate(38deg);
+      transform: rotate(37deg);
     }
     .curvedTitle span:nth-of-type(2)  {
-      transform: rotate(25deg);
+      transform: rotate(24deg);
     }
     .curvedTitle span:nth-of-type(3)  {
       transform: rotate(13deg);
     }
     .curvedTitle span:nth-of-type(4)  {
-      transform: rotate(0deg);
+      transform: rotate(1deg);
     }
     .curvedTitle span:nth-of-type(5)  {
       transform: rotate(-15deg);
@@ -177,6 +183,12 @@ class MeritBadge extends LitElement {
     this.activeNode = null;
     this.skillsOpened = false;
     this.detailsOpened = false;
+    this.titleWordOne = "The";
+    this.titleWordTwo = "Art";
+    this.titleWordThree = "of";
+    this.titleWordFour = "The";
+    this.titleWordFive = "Middle";
+    this.titleWordSix = "Ages";
   }
 
   getDate(){
@@ -250,13 +262,12 @@ class MeritBadge extends LitElement {
           </div>
   
         <h2 class="curvedTitle">
-            <span class="char1">The</span>
-            <span class="char2">Art</span>
-            <span class="char3">Of</span>
-            <span class="char4">The</span>
-            <span class="char5">Middle</span>
-            <span class="char6">Ages</span>
-            <span class="char7"></span>
+            <span class="char1">${this.titleWordOne}</span>
+            <span class="char2">${this.titleWordTwo}</span>
+            <span class="char3">${this.titleWordThree}</span>
+            <span class="char4">${this.titleWordFour}</span>
+            <span class="char5">${this.titleWordFive}</span>
+            <span class="char6">${this.titleWordSix}</span>
         </h2>
 
         <a href="https://vercel.com/login" target=”_blank”>
