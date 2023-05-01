@@ -56,7 +56,7 @@ class MeritBadge extends LitElement {
       width: 400px;
       color: black;
       padding: 50px 50px 50px 50px;
-      box-shadow: 0 0 0 4px var(--simple-colors-default-theme-brown-1), 2px 1px 6px 4px ; 
+      box-shadow: 0 0 0 5px var(--simple-colors-default-theme-brown-1), 1px 0px 5px 0px ; 
     }
 
     .lockedBadge{
@@ -76,7 +76,7 @@ class MeritBadge extends LitElement {
       height: 400px;
       width: 400px;
       padding: 50px 50px 50px 50px;
-      box-shadow: 0 0 0 4px var(--simple-colors-default-theme-grey-9), 2px 1px 6px 4px ; 
+      box-shadow: 0 0 0 5px var(--simple-colors-default-theme-grey-9), 1px 0px 5px 0px ; 
     }
     
     .curvedDate{
