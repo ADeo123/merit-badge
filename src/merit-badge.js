@@ -259,9 +259,9 @@ class MeritBadge extends SimpleColors {
           </svg>
       </div>
   
-          <div class="logoImage">
-          <img src="${this.logo}"class="logo">
-          </div>
+      <div class="logoImage">
+        <img src="${this.logo}"class="logo">
+      </div>
   
       <h2 class="curvedTitle">
           <span class="char1">${this.titleWordOne}</span>
