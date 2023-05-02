@@ -239,8 +239,8 @@ class MeritBadge extends SimpleColors {
 
       <button @click="${this.unlockButton}"> Toggle Lock </button>
       
-      <a href="https://vercel.com/login" target=”_blank”>
-        <button> Verification Link </button>
+      <a href="${this.verificationLink}" target=”_blank”>
+        <button> Verification Link</button>
       </a>
     
       <div class="lockedBadge">
