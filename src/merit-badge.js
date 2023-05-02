@@ -33,6 +33,7 @@ class MeritBadge extends SimpleColors {
     titleWordFour: {type: String},
     titleWordFive: {type: String},
     titleWordSix: {type: String},
+    verificationLink: {type: String},
   };
 
   static styles = [...super.styles, css`
@@ -193,6 +194,7 @@ class MeritBadge extends SimpleColors {
     this.titleWordFour = "The";
     this.titleWordFive = "Middle";
     this.titleWordSix = "Ages";
+    this.verificationLink = "https://vercel.com/login";
   }
 
   getDate(){
@@ -236,7 +238,11 @@ class MeritBadge extends SimpleColors {
     return html`  
 
       <button @click="${this.unlockButton}"> Toggle Lock </button>
-
+      
+      <a href="https://vercel.com/login" target=”_blank”>
+        <button> Verification Link </button>
+      </a>
+    
       <div class="lockedBadge">
         <img src="https://www.freeiconspng.com/thumbs/lock-icon/lock-icon-11.png">
       </div>
@@ -251,54 +257,54 @@ class MeritBadge extends SimpleColors {
                 </textPath>
              </text>
           </svg>
-        </div>
+      </div>
   
           <div class="logoImage">
           <img src="${this.logo}"class="logo">
           </div>
   
-        <h2 class="curvedTitle">
-            <span class="char1">${this.titleWordOne}</span>
-            <span class="char2">${this.titleWordTwo}</span>
-            <span class="char3">${this.titleWordThree}</span>
-            <span class="char4">${this.titleWordFour}</span>
-            <span class="char5">${this.titleWordFive}</span>
-            <span class="char6">${this.titleWordSix}</span>
-        </h2>
+      <h2 class="curvedTitle">
+          <span class="char1">${this.titleWordOne}</span>
+          <span class="char2">${this.titleWordTwo}</span>
+          <span class="char3">${this.titleWordThree}</span>
+          <span class="char4">${this.titleWordFour}</span>
+          <span class="char5">${this.titleWordFive}</span>
+          <span class="char6">${this.titleWordSix}</span>
+      </h2>
 
-        <a href="https://vercel.com/login" target=”_blank”>
-            <simple-icon class="verificationLinkIcon" icon="${this.iconOne}"></simple-icon>
-        </a>
+      <a href="https://vercel.com/login" target=”_blank”>
+          <simple-icon class="verificationLinkIcon" icon="${this.iconOne}"></simple-icon>
+      </a>
 
-        <badge-sticker id="skillList">
-          <simple-icon-button icon="${this.iconTwo}" @click="${this.skillClick}"></simple-icon-button>
-        </badge-sticker>
+      <badge-sticker id="skillList">
+        <simple-icon-button icon="${this.iconTwo}" @click="${this.skillClick}"></simple-icon-button>
+      </badge-sticker>
        
-        <badge-sticker id="detailList">
-          <simple-icon-button icon="${this.iconThree}" @click="${this.detailsClick}"></simple-icon-button>
-        </badge-sticker>
+      <badge-sticker id="detailList">
+        <simple-icon-button icon="${this.iconThree}" @click="${this.detailsClick}"></simple-icon-button>
+      </badge-sticker>
           
-        <absolute-position-behavior
-          justify
-          position="bottom"
-          allow-overlap
-          sticky
-          auto
-          .target="${this.activeNode}"
-          ?hidden="${!this.skillsOpened}">
-            <ul class="skills">${this.skills.map(item => html`<li>${item}</li>`)}</ul>
-        </absolute-position-behavior>
+      <absolute-position-behavior
+        justify
+        position="bottom"
+        allow-overlap
+        sticky
+        auto
+        .target="${this.activeNode}"
+        ?hidden="${!this.skillsOpened}">
+          <ul class="skills">${this.skills.map(item => html`<li>${item}</li>`)}</ul>
+      </absolute-position-behavior>
 
-        <absolute-position-behavior
-          justify
-          position="bottom"
-          allow-overlap
-          sticky
-          auto
-          .target="${this.activeNodeTwo}"
-          ?hidden="${!this.detailsOpened}">
-           <ul class="detailsTwo">${this.details.map(item => html`<li>${item}</li>`)}</ul>
-        </absolute-position-behavior>
+      <absolute-position-behavior
+        justify
+        position="bottom"
+        allow-overlap
+        sticky
+        auto
+        .target="${this.activeNodeTwo}"
+        ?hidden="${!this.detailsOpened}">
+          <ul class="detailsTwo">${this.details.map(item => html`<li>${item}</li>`)}</ul>
+      </absolute-position-behavior>
     `;
   }
 }
