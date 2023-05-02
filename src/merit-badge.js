@@ -210,30 +210,22 @@ class MeritBadge extends LitElement {
     }
   }
 
-  //skills popover 
   firstUpdated(changedProperties) {
     if (super.firstUpdated) {
       super.firstUpdated(changedProperties);
     }
     this.activeNode = this.shadowRoot.querySelector("#skillList");
+    this.activeNodeTwo = this.shadowRoot.querySelector("#detailList");
   }
 
   skillClick(e) {
     this.skillsOpened = !this.skillsOpened;
-    console.log(this.skillsOpened)
-  }
-
-//details popover
-  firstUpdated2(changedProperties) {
-    if (super.firstUpdated) {
-      super.firstUpdated(changedProperties);
-    }
-    this.activeNodeTwo = this.shadowRoot.querySelector("#detailList");
+    this.detailsOpened = false; 
   }
 
   detailsClick(e) {
     this.detailsOpened = !this.detailsOpened;
-    console.log(this.detailOpened)
+    this.skillsOpened = false; 
   }
 
   render() {
@@ -299,7 +291,7 @@ class MeritBadge extends LitElement {
           allow-overlap
           sticky
           auto
-          .target="${this.activeNode}"
+          .target="${this.activeNodeTwo}"
           ?hidden="${!this.detailsOpened}">
            <ul class="detailsTwo">${this.details.map(item => html`<li>${item}</li>`)}</ul>
         </absolute-position-behavior>
