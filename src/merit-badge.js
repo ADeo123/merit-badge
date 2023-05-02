@@ -3,9 +3,13 @@ import "@lrnwebcomponents/absolute-position-behavior/absolute-position-behavior.
 import "@lrnwebcomponents/simple-icon/simple-icon.js";
 import "@lrnwebcomponents/simple-icon/lib/simple-icons.js";
 import "@lrnwebcomponents/simple-icon/lib/simple-icon-button.js";
+import { SimpleColors } from "@lrnwebcomponents/simple-colors/simple-colors.js";
 
-class MeritBadge extends LitElement {
+
+class MeritBadge extends SimpleColors {
   static properties = {
+  
+    ...super.properties,
     header: { type: String },
     date: { type: String},
     logo: { type: String },
@@ -31,11 +35,10 @@ class MeritBadge extends LitElement {
     titleWordSix: {type: String},
   };
 
-  static styles = css`
+  static styles = [...super.styles, css`
     
     :host{
       --stichingColor: black; 
-      --lockedBackgroundColor: gray; 
       --fontColor: black; 
     }
 
@@ -46,7 +49,7 @@ class MeritBadge extends LitElement {
       position: absolute; 
       border: 2px dashed var(--stichingColor) ;
       border-radius: 50%; 
-      background-color: var(--simple-colors-default-theme-brown-1);
+      background-color: var(--simple-colors-default-theme-accent-1);
       color: var(--fontColor); 
       text-align: center;
       line-height: 200px 
@@ -56,18 +59,18 @@ class MeritBadge extends LitElement {
       width: 400px;
       color: black;
       padding: 50px 50px 50px 50px;
-      box-shadow: 0 0 0 5px var(--simple-colors-default-theme-brown-1), 1px 0px 5px 0px ; 
+      box-shadow: 0 0 0 5px var(--simple-colors-default-theme-accent-1), 1px 0px 5px 0px ; 
     }
 
     .lockedBadge{
       z-index: 6;
       top: 10px;
       left: 10px;
-      opacity: 85%;
+      opacity: 95%;
       position: absolute;
       border: 2px dashed var(--stichingColor) ;
       border-radius: 50%; 
-      background-color: var(--simple-colors-default-theme-grey-9);
+      background-color: var(--simple-colors-default-theme-accent-9);
       color: var(--fontColor); 
       text-align: center;
       line-height: 200px 
@@ -76,7 +79,7 @@ class MeritBadge extends LitElement {
       height: 400px;
       width: 400px;
       padding: 50px 50px 50px 50px;
-      box-shadow: 0 0 0 5px var(--simple-colors-default-theme-grey-9), 1px 0px 5px 0px ; 
+      box-shadow: 0 0 0 5px var(--simple-colors-default-theme-accent-9), 1px 0px 5px 0px ; 
     }
     
     .curvedDate{
@@ -167,7 +170,7 @@ class MeritBadge extends LitElement {
       transform: rotate(-39deg);
     }
 
-  `;
+  `];
   constructor() {
     super();
     this.header = "Testing Header";
