@@ -181,6 +181,7 @@ class MeritBadge extends LitElement {
     this.skills = ['Computers', 'Business','Biology'];
     this.details = ['JavaScript', 'Management', "Science"];
     this.activeNode = null;
+    this.activeNodeTwo = null;
     this.skillsOpened = false;
     this.detailsOpened = false;
     this.titleWordOne = "The";
